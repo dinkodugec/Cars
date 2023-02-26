@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Car;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,10 @@ class CarFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id'  => $this->factoryForModel(User::class),
+            'manufacturer' => $this->faker->realText(),
+            "name" => $this->faker->name(),
+            'description' => $this->faker->realText(30),
         ];
     }
 }
