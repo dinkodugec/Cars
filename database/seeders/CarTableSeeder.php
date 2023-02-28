@@ -6,6 +6,7 @@ use App\Models\Car;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CarTableSeeder extends Seeder
 {
@@ -17,7 +18,7 @@ class CarTableSeeder extends Seeder
     public function run()
     {
         $user = User::factory()
-            ->has(Car::factory()->count(3))
+            ->has(Car::factory()->count(5))
             ->create();
     }
 }
