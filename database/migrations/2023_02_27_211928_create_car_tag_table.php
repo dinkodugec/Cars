@@ -13,19 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('car_categories', function (Blueprint $table) {
+        Schema::create('car_tag', function (Blueprint $table) {
             $table->unsignedBigInteger('car_id')->nullable();
-            $table->unsignedBigInteger('categories_id')->nullable();
+            $table->unsignedBigInteger('tag_id')->nullable();
             $table->timestamps();
 
-            $table->primary(['car_id', 'categories_id']);
+            $table->primary(['car_id', 'tag_id']);
 
             $table->foreign('car_id')
                     ->references('id')->on('cars')
                     ->onDelete('cascade');
 
-            $table->foreign('categories_id')
-                    ->references('id')->on('categories')
+            $table->foreign('tag_id')
+                    ->references('id')->on('tags')
                     ->onDelete('cascade');
 
         });
@@ -38,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('car_categories');
+        Schema::dropIfExists('car_tag');
     }
 };

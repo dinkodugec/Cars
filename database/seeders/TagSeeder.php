@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CategorySeeder extends Seeder
+class TagSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        $categories = [
+        $tags = [
             'Sports' => 'primary', // blue
             'Relaxation' => 'secondary', // grey
             'Fun' => 'warning', // yellow
@@ -26,14 +26,14 @@ class CategorySeeder extends Seeder
             'Interest' => 'dark' // black-white
         ];
 
-        foreach ($categories as $key => $value) {
-            $category = new Category(
+        foreach ($tags as $key => $value) {
+            $tag = new Tag(
                 [
                     'name' => $key,
                     'style' => $value
                 ]
             );
-            $category->save();
+            $tag->save();
         }
     }
 }
