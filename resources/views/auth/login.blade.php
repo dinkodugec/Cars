@@ -40,7 +40,7 @@
             @endif
 
             <x-primary-button class="ml-3">
-                <i class="fas fa-caret-square-right"></i> {{ __('Log in') }}
+                {{-- <i class="fas fa-caret-square-right"></i> --}} {{ __('Log in') }}
             </x-primary-button>
         </div>
     </form>
