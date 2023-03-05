@@ -6,7 +6,7 @@
            <!-- Author -->
            <p class="lead">
              by
-             <a href="user profile"></a>
+             <a href="user profile">{{ $car->user->name }}</a>
            </p>
    
            <hr>

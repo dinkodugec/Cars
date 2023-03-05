@@ -43,7 +43,34 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'name' => 'required|min:2',
+            'description' => 'required|min:5',
+            'manufacturer' => 'required|min:2',
+            /* 'image'=> 'mimes:jpeg,jpg,bmp,png,gif' */
+        ]);
+
+        $car = new Car([
+            'manufacturer' => $request['manufacturer'],
+            'name' => $request['name'],
+            /* 'image' => $request['image'], */
+            'description' => $request['description'],
+            'user_id' => auth()->id()   // Retrieve the currently authenticated user's ID
+        ]);
+
+      /*   if($request->image){
+            $this->saveImages($request->image, $car->id);
+        }
+ */
+
+        $car->save();
+        return $this->index();
+      /*   return redirect('/car/' . $car->id)->with(
+            [
+                'message_warning' => "Please assign some tags now."
+            ]
+        ); */
     }
 
     /**

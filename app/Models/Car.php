@@ -9,7 +9,17 @@ class Car extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+      /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'description',
+        'manufacturer',
+    ];
+
 
   
 
