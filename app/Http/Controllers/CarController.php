@@ -54,7 +54,11 @@ class CarController extends Controller
      */
     public function show(Car $car)
     {
-        return view('car.carDetail');
+
+        return view('car.carDetail')->with([
+            'car' => $car
+        ]);
+      
    
     }
 
