@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Car Admin',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -330,16 +330,20 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
-            'text'    => 'Levels',
+            'text'    => 'Car Adminstration',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'level_one',
+                    'text' => 'All Cars',
+                    'url'  => 'car',
+                ],
+                [
+                    'text' => 'Create Car',
                     'url'  => '#',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
+                    'text'    => '',
+                    'url'     => 'car',
                     'submenu' => [
                         [
                             'text' => 'level_two',
