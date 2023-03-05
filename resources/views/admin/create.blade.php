@@ -25,15 +25,19 @@
                         @csrf
                         <div class="form-group">
                             <label for="name">Manufacturer</label>
-                            <input type="text" class="form-control" value="{{ old('manufacturer') }}" id="name" name="manufacturer">
+                            <input type="text" class="form-control{{ $errors->has('manufacturer') ? ' border-danger' : '' }}" value="{{ old('manufacturer') }}" id="name" name="manufacturer">
+                           
+                            <small class="form-text text-danger">{!! $errors->first('manufacturer') !!}</small>
                         </div>
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" value="{{ old('name') }}" name="name">
+                            <input type="text" class="form-control{{ $errors->has('name') ? ' border-danger' : '' }}" id="name" value="{{ old('name') }}" name="name">
+                            <small class="form-text text-danger">{!! $errors->first('name') !!}</small>
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea class="form-control" id="description" value="{{ old('description') }}" name="description" rows="5"></textarea>
+                            <textarea class="form-control{{ $errors->has('description') ? ' border-danger' : '' }}" id="description" value="{{ old('description') }}" name="description" rows="5"></textarea>
+                            <small class="form-text text-danger">{!! $errors->first('description') !!}</small>
                         </div>
 
                         <div class="form-group">
