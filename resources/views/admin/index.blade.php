@@ -13,6 +13,7 @@
         <th scope="col">Manufacturer</th>
         <th scope="col">Name</th>
         <th scope="col">Edit</th>
+        <th scope="col">Edit</th>
       </tr>
     </thead>
     <tbody>
@@ -20,8 +21,12 @@
         <tr>
             <td>{{ $car->manufacturer }}</td>
             <td>{{ $car->name }}</td>
-            <td>  <a class="btn btn-sm btn-light ml-2" href="/car/{{ $car->id }}/edit"><i class="fas fa-edit"></i> Edit Car</a></td>
-            
+            <td>  <a class="btn btn-sm btn-light ml-2" href="/car/{{ $car->id }}/edit"><i class="fas fa-edit"></i>Edit</a></td>
+            <th>  <form class="float-right" style="display: inline" action="/car/{{ $car->id }}" method="post">
+                @csrf
+                @method("DELETE")
+                <input class="btn btn-sm btn-outline-danger" type="submit" value="Delete">
+            </form></th>
         </tr> 
          
         @endforeach

@@ -145,8 +145,14 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Car $car)
     {
-        //
+        $oldName = $car->name;
+        $car->delete();
+        return $this->index()->with(
+            [
+                'message_success' => "The car <b>" . $oldName . "</b> was deleted."
+            ]
+        );
     }
 }
