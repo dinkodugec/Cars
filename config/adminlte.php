@@ -342,6 +342,10 @@ return [
                     'url'  => 'car/create',
                 ],
                 [
+                    'text' => 'Edit a Car',
+                    'url'  => 'car/{{ $car->id }}/edit',
+                ],
+                [
                     'text'    => '',
                     'url'     => 'car',
                     'submenu' => [
