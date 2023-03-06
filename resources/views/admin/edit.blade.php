@@ -36,8 +36,9 @@
             @endif
                 <div class="card-header">Edit a Car</div>
                 <div class="card-body">
-                    <form class="" action="/car" method="post">
+                    <form class="" action="/car/{{$car->id}}" method="post">
                         @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <label for="name">Manufacturer</label>
                             <input type="text" class="form-control{{ $errors->has('manufacturer') ? ' border-danger' : '' }}" value="{{$car->manufacturer ?? old('manufacturer') }}" id="name" name="manufacturer">

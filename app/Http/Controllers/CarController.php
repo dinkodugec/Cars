@@ -113,9 +113,30 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Car $car)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:2',
+            'description' => 'required|min:5',
+            'manufacturer' => 'required|min:2',
+            /* 'image'=> 'mimes:jpeg,jpg,bmp,png,gif' */
+            
+        ]);
+
+        $car->update([
+            'manufacturer' => $request['manufacturer'],
+            'name' => $request['name'],
+            /* 'image' => $request['image'], */
+            'description' => $request['description'],
+        
+        ]);
+
+        return redirect('/car/' . $car->id)->with(
+            [
+                'message_warning' => "Car" . $car->name . "was updated "
+            ]
+        ); 
+
     }
 
     /**
