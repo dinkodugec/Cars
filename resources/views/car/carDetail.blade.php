@@ -6,7 +6,7 @@
            <!-- Author -->
            <p class="lead">
              by
-             <a href="user profile">{{ $car->user->name }}</a>
+             <a href="user profile">{{-- {{ $car->user->name }} --}}</a>
            </p>
    
            <hr>
@@ -85,9 +85,12 @@
                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                  </div>
                </div>
-   
              </div>
+             
            </div>
+           <div class="mt-2 mb-4">
+            <a class="btn btn-primary btn-sm" href="/car"><i class="fas fa-arrow-circle-up"></i> Back to Overview</a>
+        </div>
    
     @endsection
  </x-homeMaster>

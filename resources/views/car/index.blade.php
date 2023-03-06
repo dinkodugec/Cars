@@ -16,7 +16,7 @@
                         <div class="text-muted d-inline">{{ $car->description }}</div>
                     </h5> --}}
                     <p> {{ $car->description }}</p>
-                    <a href=""
+                    <a href="/car/{{ $car->id }}"
                         class="btn btn-primary w-100 rounded my-2"> More<i class="fas fa-arrow-right"></i> </a>
             
                 </div>

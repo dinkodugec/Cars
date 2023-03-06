@@ -5,6 +5,21 @@
 
 @section('content')
             <div class="container">
+                @isset($message_success)
+                <div class="container">
+                    <div class="alert alert-success" role="alert">
+                        {{  $message_success }}
+                    </div>
+                </div>
+              @endisset
+
+              @isset($message_warning)
+              <div class="container">
+                  <div class="alert alert-warning" role="alert">
+                      {{  $message_warning  }}
+                  </div>
+              </div>
+          @endisset
                 <div class="row justify-content-center">
                     <div class="col-md-12">
                         <div class="card">
@@ -39,6 +54,8 @@
                             <textarea class="form-control{{ $errors->has('description') ? ' border-danger' : '' }}" id="description" value="{{ old('description') }}" name="description" rows="5"></textarea>
                             <small class="form-text text-danger">{!! $errors->first('description') !!}</small>
                         </div>
+
+                       
 
                         <div class="form-group">
                             <label for="file">Image</label>
