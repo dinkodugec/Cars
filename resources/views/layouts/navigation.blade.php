@@ -21,6 +21,7 @@
                         {{ __('About') }}
                     </x-nav-link>
                 </div>
+                
             </div>
 
             <!-- Settings Dropdown -->

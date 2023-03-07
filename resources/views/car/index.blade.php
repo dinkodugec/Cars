@@ -21,12 +21,18 @@
             
                 </div>
            </div>
-      <br>
-    </div>
+         <br>
+        </div>
   
-    <br>
+           <br>
           @endforeach
+
+     <div class="mt-3">
+      {{ $cars->links() }}
+     </div>
    </div>
+  
  </div>
+
 
 </body>

@@ -89,7 +89,7 @@
              
            </div>
            <div class="mt-2 mb-4">
-            <a class="btn btn-primary btn-sm" href="/car"><i class="fas fa-arrow-circle-up"></i> Back to Overview</a>
+            <a class="btn btn-primary btn-sm" href="{{ url()->previous() }}"><i class="fas fa-arrow-circle-up"></i> Back to Overview</a>
         </div>
    
     @endsection
