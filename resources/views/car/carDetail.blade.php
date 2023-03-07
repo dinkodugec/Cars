@@ -20,6 +20,11 @@
            <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
    
            <hr>
+
+           <p>   @foreach($car->tags as $tag)
+            <a href=""><span class="badge bg-{{ $tag->style }}">{{ $tag->name }}</span></a>
+            @endforeach
+           </p>
    
            <!-- Post Content -->
            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>

@@ -17,7 +17,14 @@
                         <div class="text-muted d-inline">{{ $car->description }}</div>
                     </h5> --}}
                     <p> {{ $car->description }}</p>
-                    <span class="float-right">{{ $car->created_at->diffForHumans() }}</span>
+
+                    
+                    @foreach($car->tags as $tag)
+                    <a href=""><span class="badge bg-{{ $tag->style }}">{{ $tag->name }}</span></a>
+                    @endforeach
+                
+                  
+
                     <a href="/car/{{ $car->id }}"
                         class="btn btn-primary w-100 rounded my-2"> More<i class="fas fa-arrow-right"></i> </a>
             
