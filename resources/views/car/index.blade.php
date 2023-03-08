@@ -9,7 +9,7 @@
                     <figure class="figure">
                         <img src="http://via.placeholder.com/640x360" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
                         <figcaption class="figure-caption">A caption for the above image.</figcaption>
-                        <span class="mx-2">Posted by {{ $car->user->name }} ({{ $car->user->cars->count() }} cars)</span>
+                        <span class="mx-2">Posted by <a href="user/{{ $car->user->id }}"> {{ $car->user->name }}</a> ({{ $car->user->cars->count() }} cars)</span>
                     </figure>
                 <div class="card-body">
                     <h5 class="d-inline"><b>{{ $car->name }}</b> </h5>
