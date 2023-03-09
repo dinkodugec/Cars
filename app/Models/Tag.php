@@ -18,4 +18,11 @@ class Tag extends Model
     {
         return $this->belongsToMany(Car::class);
     }
+
+    public function filteredCars()
+    {
+        return $this->belongsToMany(Car::class)
+            ->wherePivot('tag_id', $this->id)
+            ->orderBy('updated_at', 'DESC');
+    }
 }

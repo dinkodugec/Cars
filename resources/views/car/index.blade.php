@@ -2,16 +2,27 @@
   
   <div class="container">
       <div class="row mt-5">
+        @isset($filter)
+          <div class="card-header">Filtered cars by
+              <span style="font-size: 130%;" class="badge bg-{{ $filter->style }}">{{ $filter->name }}</span>
+               <span class="float-end"><a href="/car">Show all Cars</a></span>
+          </div>
+            @else
+              <div class="card-header">All the cars</div>
+        @endisset
    
       @foreach($cars as $car)
          <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-             <div class="card">
+             
+            <div class="card">
+           
                     <figure class="figure">
                         <img src="http://via.placeholder.com/640x360" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
                         <figcaption class="figure-caption">A caption for the above image.</figcaption>
-                        <span class="mx-2">Posted by <a href="user/{{ $car->user->id }}"> {{ $car->user->name }}</a> ({{ $car->user->cars->count() }} cars)</span>
+                        <span class="mx-2">Posted by <a href="/user/{{ $car->user->id }}"> {{ $car->user->name }}</a> ({{ $car->user->cars->count() }} cars)</span>
                     </figure>
-                <div class="card-body">
+               
+                    <div class="card-body">
                     <h5 class="d-inline"><b>{{ $car->name }}</b> </h5>
                     {{--  <h5 class="d-inline">
                         <div class="text-muted d-inline">{{ $car->description }}</div>
@@ -20,7 +31,7 @@
 
                     
                     @foreach($car->tags as $tag)
-                    <a href=""><span class="badge bg-{{ $tag->style }}">{{ $tag->name }}</span></a>
+                    <a href="/car/tag/{{ $tag->id }}"><span class="badge bg-{{ $tag->style }}">{{ $tag->name }}</span></a>
                     @endforeach
                 
                   

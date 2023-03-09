@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\CarTagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,6 +42,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index'); 
+
+Route::get('/car/tag/{tag_id}', [App\Http\Controllers\CarTagController::class, 'getFilteredCars'])->name('car_tag'); 
 
 Route::view('/about', 'about')->name('about');
 
