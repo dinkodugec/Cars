@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CarController extends Controller
 {
@@ -86,8 +88,14 @@ class CarController extends Controller
     public function show(Car $car)
     {
 
+        $allTags = Tag::all();
+        $usedTags = $car->tags; //used tags via $car and method tags() - Eloquent relationship
+        $availableTags = $allTags->diff($usedTags); //diff() part of collection method in Laravel ;) famous!!!
+
         return view('car.carDetail')->with([
-            'car' => $car
+            'car' => $car,
+           'availableTags' => $availableTags,
+           'message_success' => Session::get('message_success')
         ]);
       
    

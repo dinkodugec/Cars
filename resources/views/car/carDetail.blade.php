@@ -20,11 +20,21 @@
            <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
    
            <hr>
-
-           <p>   @foreach($car->tags as $tag)
-            <a href=""><span class="badge bg-{{ $tag->style }}">{{ $tag->name }}</span></a>
+           @if($car->tags->count() > 0)
+               <b>Used Categories (click to remove)</b>
+              <p>   @foreach($car->tags as $tag)
+              <a href="/car/{{ $car->id }}/tag/{{ $tag->id }}/detach"><span class="badge bg-{{ $tag->style }}">{{ $tag->name }}</span></a>
             @endforeach
            </p>
+           @endif
+
+           @if($availableTags->count() > 0)
+           <b>Available Categories (click to asign)</b>
+           <p>   @foreach($availableTags as $tag)
+            <a href="/car/{{ $car->id }}/tag/{{ $tag->id }}/attach"><span class="badge bg-{{ $tag->style }}">{{ $tag->name }}</span></a>
+            @endforeach
+           </p>
+           @endif
    
            <!-- Post Content -->
            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
