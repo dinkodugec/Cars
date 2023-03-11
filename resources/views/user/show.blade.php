@@ -33,59 +33,30 @@
              </footer>
            </blockquote>
    
-           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
-   
-           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
+           <h5>Cars of {{ $user->name }}</h5>
+           <ul class="list-group">
+               @if($user->cars->count() > 0)
+                   @foreach($user->cars as $car)
+                       <li class="list-group-item">
+                           <a title="Show Details" href="/car/{{ $car->id }}">{{ $car->name }}</a>
+                           <span>{{ $car->manufacturer }}</span>
+                           <span class="float-right mx-2">{{ $car->created_at->diffForHumans() }}</span>
+                           <br>
+                           @foreach($car->tags as $tag)
+                               <a href="/car/tag/{{ $tag->id }}"><span class="badge badge-{{ $tag->style }}">{{ $tag->name }}</span></a>
+                           @endforeach
+                       </li>
+                   @endforeach
+           </ul>
+           @else
+               <p>
+                   {{ $user->name }} has not created any cars yet.
+               </p>
+           @endif
    
            <hr>
    
-           <!-- Comments Form -->
-           <div class="card my-4">
-             <h5 class="card-header">Leave a Comment:</h5>
-             <div class="card-body">
-               <form>
-                 <div class="form-group">
-                   <textarea class="form-control" rows="3"></textarea>
-                 </div>
-                 <button type="submit" class="btn btn-primary">Submit</button>
-               </form>
-             </div>
-           </div>
-   
-           <!-- Single Comment -->
-           <div class="media mb-4">
-             <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-             <div class="media-body">
-               <h5 class="mt-0">Commenter Name</h5>
-               Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-             </div>
-           </div>
-   
-           <!-- Comment with nested comments -->
-           <div class="media mb-4">
-             <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-             <div class="media-body">
-               <h5 class="mt-0">Commenter Name</h5>
-               Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-   
-               <div class="media mt-4">
-                 <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                 <div class="media-body">
-                   <h5 class="mt-0">Commenter Name</h5>
-                   Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                 </div>
-               </div>
-   
-               <div class="media mt-4">
-                 <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                 <div class="media-body">
-                   <h5 class="mt-0">Commenter Name</h5>
-                   Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                 </div>
-               </div>
-             </div>
-             
-           </div>
+        
            <div class="mt-2 mb-4">
             <a class="btn btn-primary btn-sm" href="{{ url()->previous() }}"><i class="fas fa-arrow-circle-up"></i> Back to Overview</a>
         </div>
