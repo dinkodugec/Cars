@@ -51,7 +51,7 @@ class CarController extends Controller
             'name' => 'required|min:2',
             'description' => 'required|min:5',
             'manufacturer' => 'required|min:2',
-            /* 'image'=> 'mimes:jpeg,jpg,bmp,png,gif' */
+             'image'=> 'mimes:jpeg,jpg,bmp,png,gif' 
             
         ]);
 

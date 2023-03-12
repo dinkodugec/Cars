@@ -36,7 +36,7 @@
             @endif
                 <div class="card-header">Create New Car</div>
                 <div class="card-body">
-                    <form class="" action="/car" method="post">
+                    <form class="" autocomplete="off" action="/car" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="name">Manufacturer</label>
@@ -55,14 +55,13 @@
                             <small class="form-text text-danger">{!! $errors->first('description') !!}</small>
                         </div>
 
-                       
-
                         <div class="form-group">
-                            <label for="file">Image</label>
-                                <input type="file"
-                                       name="image"
-                                       class="form-control-file">
-                          </div>
+                            <label for="image">Image</label>
+                            <input type="file" class="form-control{{ $errors->has('image') ? ' border-danger' : '' }}" id="image" name="image" value="">
+                            <small class="form-text text-danger">{!! $errors->first('image') !!}</small>
+                        </div>
+
+                      
                         <input class="btn btn-primary mt-4" type="submit" value="Save Car">
                     </form>
                     <a class="btn btn-primary float-right" href="/car"><i class="fas fa-arrow-circle-up"></i> Back</a>
