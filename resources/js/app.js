@@ -1,5 +1,8 @@
 import './bootstrap';
 import './custom';
+/* require('lightbox2'); */
+
+
 
 import Alpine from 'alpinejs';
 

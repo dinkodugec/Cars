@@ -55,6 +55,13 @@
            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
    
            <hr>
+
+           <div class="col-md-3">
+            <a href="/img/400x300.jpg" data-lightbox="400x300.jpg" data-title="{{ $car->name }}">
+                <img class="img-fluid" src="/img/400x300.jpg" alt="">
+            </a>
+            <i class="fa fa-search-plus"></i> Click image to enlarge
+        </div>
    
            <!-- Comments Form -->
            <div class="card my-4">
