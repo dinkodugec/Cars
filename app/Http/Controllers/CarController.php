@@ -6,6 +6,7 @@ use App\Models\Car;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Intervention\Image\Facades\Image;
 
 class CarController extends Controller
 {
@@ -131,10 +132,32 @@ class CarController extends Controller
             
         ]);
 
+        if ($request->image) { //if image is in request
+            $image = Image::make($request->image); //new instance store n variable
+            if ( $image->width() > $image->height() ) { // Landscape
+                $image->widen(1200) /* 1200px */
+                    ->save(public_path() . "/img/cars/" . $car->id . "_large.jpg")
+                    ->widen(400)->pixelate(12)
+                    ->save(public_path() . "/img/cars/" . $car->id . "_pixelated.jpg");
+                $image = Image::make($request->image);
+                $image->widen(60)
+                    ->save(public_path() . "/img/cars/" . $car->id . "_thumb.jpg");
+            } else { // Portrait
+                $image->heighten(900)
+                    ->save(public_path() . "/img/cars/" . $car->id . "_large.jpg")
+                    ->heighten(400)->pixelate(12)
+                    ->save(public_path() . "/img/cars/" . $car->id . "_pixelated.jpg");
+                $image = Image::make($request->image);
+                $image->heighten(60)
+                    ->save(public_path() . "/img/cars/" . $car->id . "_thumb.jpg");
+            }
+        }
+
+
         $car->update([
             'manufacturer' => $request['manufacturer'],
             'name' => $request['name'],
-            /* 'image' => $request['image'], */
+             'image' => $request['image'], 
             'description' => $request['description'],
         
         ]);
