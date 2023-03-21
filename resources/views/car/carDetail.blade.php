@@ -15,9 +15,18 @@
            <p>Created on {{ $car->created_at->diffForHumans()}}</p>
    
            <hr>
+          
    
            <!-- Preview Image -->
-           <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+           
+            @if(Auth::user() && file_exists('img/cars/' . $car->id ."_large.jpg"))
+              <a href="/img/cars/{{$car->id}}_large.jpg"  data-lightbox="img/cars/{{$car->id}}_large.jpg" >
+              <img src="/img/cars/{{$car->id}}_large.jpg" class="card-img" alt="..."></a>
+              <i class="fa fa-search-plus"></i> Click image to enlarge
+           @endif
+           @if(!Auth::user() && file_exists('img/cars/' . $car->id ."_pixelated.jpg"))
+             <img src="/img/cars/{{$car->id}}_pixelated" class="card-img" alt="...">
+           @endif
    
            <hr>
            @if($car->tags->count() > 0)

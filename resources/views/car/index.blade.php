@@ -17,7 +17,9 @@
             <div class="card">
            
                     <figure class="figure">
-                        <img src="http://via.placeholder.com/640x360" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+                        @if(file_exists('img/cars/' . $car->id ."_thumb.jpg"))
+                         <img  style="max-width: 600px; max-height: 300px;" src="/img/cars/{{$car->id}}_large.jpg" class="Car thumb">
+                        @endif
                         <figcaption class="figure-caption">A caption for the above image.</figcaption>
                         <span class="mx-2">Posted by <a href="/user/{{ $car->user->id }}"> {{ $car->user->name }}</a> ({{ $car->user->cars->count() }} cars)</span>
                     </figure>

@@ -37,9 +37,19 @@
            <ul class="list-group">
                @if($user->cars->count() > 0)
                    @foreach($user->cars as $car)
+                   <div class="card text-bg-dark" >
+                    @if(file_exists('img/cars/' . $car->id ."_thumb.jpg"))
+                    <img src="/img/cars/{{$car->id}}_large.jpg" class="card-img" alt="...">
+                    @endif
+                    <div class="card-img-overlay" style="width: 18rem;">
+                      <h5 class="card-title">{{ $car->name }}</h5> 
+                      <p class="card-text">{{ $car->description }}</p>
+                     {{--  <p class="card-text"><small>Last updated 3 mins ago</small></p> --}}
+                    </div>
+                  </div>
+                  
                        <li class="list-group-item">
                            <a title="Show Details" href="/car/{{ $car->id }}">{{ $car->name }}</a>
-                           <span>{{ $car->manufacturer }}</span>
                            <span class="float-right mx-2">{{ $car->created_at->diffForHumans() }}</span>
                            <br>
                            @foreach($car->tags as $tag)

@@ -55,6 +55,12 @@
                             <textarea class="form-control{{ $errors->has('description') ? ' border-danger' : '' }}" id="description" value="{{ $car->description ?? old('description') }}" name="description" rows="5"></textarea>
                             <small class="form-text text-danger">{!! $errors->first('description') !!}</small>
                         </div>
+                        @if(file_exists('img/cars/' . $car->id . '_large.jpg'))
+                        <div class="mb-2">
+                            <img style="max-width: 400px; max-height: 300px;" src="/img/cars/{{$car->id}}_large.jpg" alt="">
+                            <a class="btn btn-outline-danger float-right" href="/delete-images/car/{{$car->id}}">Delete Image</a>
+                        </div>
+                        @endif
                         <div class="form-group">
                             <label for="image">Image</label>
                             <input type="file" class="form-control{{ $errors->has('image') ? ' border-danger' : '' }}" id="image" name="image" value="">
