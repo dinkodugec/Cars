@@ -47,7 +47,6 @@ class CarController extends Controller
     public function store(Request $request)
     {
        
-
         $request->validate([
             'name' => 'required|min:2',
             'description' => 'required|min:5',
@@ -56,20 +55,21 @@ class CarController extends Controller
             
         ]);
 
+      
+
+
         $car = new Car([
             'manufacturer' => $request['manufacturer'],
             'name' => $request['name'],
-            /* 'image' => $request['image'], */
+            'image' => $request['image'], 
             'description' => $request['description'],
             'user_id' => auth()->id()   // Retrieve the currently authenticated user's ID
         ]);
 
-    
+        if ($request->image) { //if image is in request
+            $this->saveimages($request->image, $car->id);
+          }
 
-      /*   if($request->image){
-            $this->saveImages($request->image, $car->id);
-        }
- */
 
         $car->save();
       
@@ -128,29 +128,12 @@ class CarController extends Controller
             'name' => 'required|min:2',
             'description' => 'required|min:5',
             'manufacturer' => 'required|min:2',
-            /* 'image'=> 'mimes:jpeg,jpg,bmp,png,gif' */
+             'image'=> 'mimes:jpeg,jpg,bmp,png,gif' 
             
         ]);
 
         if ($request->image) { //if image is in request
-            $image = Image::make($request->image); //new instance store n variable
-            if ( $image->width() > $image->height() ) { // Landscape
-                $image->widen(1200) /* 1200px */
-                    ->save(public_path() . "/img/cars/" . $car->id . "_large.jpg")
-                    ->widen(400)->pixelate(12)
-                    ->save(public_path() . "/img/cars/" . $car->id . "_pixelated.jpg");
-                $image = Image::make($request->image);
-                $image->widen(60)
-                    ->save(public_path() . "/img/cars/" . $car->id . "_thumb.jpg");
-            } else { // Portrait
-                $image->heighten(900)
-                    ->save(public_path() . "/img/cars/" . $car->id . "_large.jpg")
-                    ->heighten(400)->pixelate(12)
-                    ->save(public_path() . "/img/cars/" . $car->id . "_pixelated.jpg");
-                $image = Image::make($request->image);
-                $image->heighten(60)
-                    ->save(public_path() . "/img/cars/" . $car->id . "_thumb.jpg");
-            }
+          $this->saveimages($request->image, $car->id);
         }
 
 
@@ -185,5 +168,29 @@ class CarController extends Controller
                 'message_success' => "The car <b>" . $oldName . "</b> was deleted."
             ]
         );
+    }
+
+    public function saveimages($imageInput, $car_id)
+    {
+        $image = Image::make($imageInput); //new instance store n variable
+        if ( $image->width() > $image->height() ) { // Landscape
+            $image->widen(1200) /* 1200px */
+                ->save(public_path() . "/img/cars/" . $car_id . "_large.jpg") //always converted in jpg
+                ->widen(400)->pixelate(12)
+                ->save(public_path() . "/img/cars/" . $car_id . "_pixelated.jpg");
+            $image = Image::make($imageInput);
+            $image->widen(60)
+                ->save(public_path() . "/img/cars/" . $car_id . "_thumb.jpg");
+        } else { // Portrait
+            $image->heighten(900)
+                ->save(public_path() . "/img/cars/" . $car_id . "_large.jpg")
+                ->heighten(400)->pixelate(12)
+                ->save(public_path() . "/img/cars/" . $car_id . "_pixelated.jpg");
+            $image = Image::make($imageInput);
+            $image->heighten(60)
+                ->save(public_path() . "/img/cars/" . $car_id . "_thumb.jpg");
+        }
+
+
     }
 }
