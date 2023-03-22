@@ -23,12 +23,12 @@
 
 
 
-                    @isset($hobbies)
-                        @if($hobbies->count() > 0)
-                        <h3>Your Hobbies:</h3>
+                    @isset($cars)
+                        @if($cars->count() > 0)
+                        <h3>Your cars:</h3>
                         @endif
                     <ul class="list-group">
-                        @foreach($hobbies as $hobby)
+                        @foreach($cars as $hobby)
                             <li class="list-group-item">
                                 <a title="Show Details" href="/hobby/{{ $hobby->id }}">
                                     <img src="/img/thumb_landscape.jpg" alt="thumb"></a>

@@ -96,7 +96,9 @@ class CarController extends Controller
         return view('car.carDetail')->with([
             'car' => $car,
            'availableTags' => $availableTags,
-           'message_success' => Session::get('message_success')
+           'message_success' => Session::get('message_success'),
+           'message_warning' => Session::get('message_warning')
+
         ]);
       
    
@@ -111,7 +113,9 @@ class CarController extends Controller
     public function edit(Car $car)
     {
         return view('admin.edit')->with([
-            'car' => $car
+            'car' => $car,
+            'message_success' => Session::get('message_success'),
+            'message_warning' => Session::get('message_warning')
         ]);
     }
 
@@ -192,5 +196,21 @@ class CarController extends Controller
         }
 
 
+    }
+
+    public function deleteImages($car_id)
+    {
+        if(file_exists(public_path() . "/img/cars/" . $car_id . "_large.jpg"))
+            unlink(public_path() . "/img/cars/" . $car_id . "_large.jpg"); //unlink() ordinary php function
+        if(file_exists(public_path() . "/img/cars/" . $car_id . "_thumb.jpg"))
+            unlink(public_path() . "/img/cars/" . $car_id . "_thumb.jpg");
+        if(file_exists(public_path() . "/img/cars/" . $car_id . "_pixelated.jpg"))
+            unlink(public_path() . "/img/cars/" . $car_id . "_pixelated.jpg");
+
+        return back()->with(
+            [
+                'message_success' => "The Image was deleted."
+            ]
+        );
     }
 }

@@ -7,17 +7,17 @@
                 <div class="card">
 
                     @isset($filter)
-                        <div class="card-header">Filtered hobbies by
+                        <div class="card-header">Filtered cars by
                             <span style="font-size: 130%;" class="badge badge-{{ $filter->style }}">{{ $filter->name }}</span>
-                            <span class="float-right"><a href="/hobby">Show all Hobbies</a></span>
+                            <span class="float-right"><a href="/hobby">Show all cars</a></span>
                         </div>
                     @else
-                        <div class="card-header">All the hobbies</div>
+                        <div class="card-header">All the cars</div>
                     @endisset
 
                     <div class="card-body">
                         <ul class="list-group">
-                            @foreach($hobbies as $hobby)
+                            @foreach($cars as $hobby)
                                 <li class="list-group-item">
                                     <a title="Show Details" href="/hobby/{{ $hobby->id }}">
                                         <img src="/img/thumb_landscape.jpg" alt="thumb">
@@ -26,7 +26,7 @@
                                     @auth
                                     <a class="btn btn-sm btn-light ml-2" href="/hobby/{{ $hobby->id }}/edit"><i class="fas fa-edit"></i> Edit Hobby</a>
                                     @endauth
-                                    <span class="mx-2">Posted by: <a href="/user/{{ $hobby->user->id }}">{{ $hobby->user->name }} ({{ $hobby->user->hobbies->count() }} Hobbies)</a>
+                                    <span class="mx-2">Posted by: <a href="/user/{{ $hobby->user->id }}">{{ $hobby->user->name }} ({{ $hobby->user->cars->count() }} cars)</a>
                                     <a href="/user/{{ $hobby->user->id }}"><img class="rounded" src="/img/thumb_portrait.jpg"></a>
                                     </span>
                                     @auth
@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="mt-3">
-                    {{ $hobbies->links() }}
+                    {{ $cars->links() }}
                 </div>
                 @auth
                 <div class="mt-2">

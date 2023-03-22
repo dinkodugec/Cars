@@ -13,10 +13,10 @@
                                 <b>My Motto:<br>{{$user->motto}}</b>
                                 <p class="mt-2"><b>About me:</b><br>{{$user->about_me}}</p>
 
-                                <h5>Hobbies of {{ $user->name }}</h5>
+                                <h5>cars of {{ $user->name }}</h5>
                                 <ul class="list-group">
-                                    @if($user->hobbies->count() > 0)
-                                        @foreach($user->hobbies as $hobby)
+                                    @if($user->cars->count() > 0)
+                                        @foreach($user->cars as $hobby)
                                             <li class="list-group-item">
                                                 <a title="Show Details" href="/hobby/{{ $hobby->id }}">{{ $hobby->name }}</a>
                                                 <span class="float-right mx-2">{{ $hobby->created_at->diffForHumans() }}</span>
@@ -29,7 +29,7 @@
                                 </ul>
                                 @else
                                     <p>
-                                        {{ $user->name }} has not created any hobbies yet.
+                                        {{ $user->name }} has not created any cars yet.
                                     </p>
                                 @endif
                             </div>

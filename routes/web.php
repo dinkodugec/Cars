@@ -52,3 +52,6 @@ Route::resource('user', UserController::class);
 // Attach / Detach Tags to Car
 Route::get('/car/{car_id}/tag/{tag_id}/attach', [App\Http\Controllers\CarTagController::class, 'attachTag']);
 Route::get('/car/{car_id}/tag/{tag_id}/detach', [App\Http\Controllers\CarTagController::class, 'detachTag']);
+
+// Delete Images of Car
+Route::get('/delete-images/car/{car_id}', [App\Http\Controllers\CarController::class, 'deleteImages']);
