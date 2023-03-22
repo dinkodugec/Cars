@@ -60,20 +60,18 @@ class CarController extends Controller
 
         $car = new Car([
             'manufacturer' => $request['manufacturer'],
-            'name' => $request['name'],
-            'image' => $request['image'], 
+            'name' => $request['name'], 
             'description' => $request['description'],
             'user_id' => auth()->id()   // Retrieve the currently authenticated user's ID
         ]);
+
+        $car->save();
 
         if ($request->image) { //if image is in request
             $this->saveimages($request->image, $car->id);
           }
 
-
-        $car->save();
-      
-         return redirect('/car/' . $car->id)->with(
+          return redirect('/car/' . $car->id)->with(
             [
                 'message_warning' => "Car" . $car->name . "was creted "
             ]
@@ -144,14 +142,13 @@ class CarController extends Controller
         $car->update([
             'manufacturer' => $request['manufacturer'],
             'name' => $request['name'],
-             'image' => $request['image'], 
             'description' => $request['description'],
         
         ]);
 
-        return redirect('/car/' . $car->id)->with(
+        return $this->index()->with(
             [
-                'message_warning' => "Car" . $car->name . "was updated "
+                'message_success' => "Car" . $car->name . "was updated "
             ]
         ); 
 

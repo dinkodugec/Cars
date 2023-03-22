@@ -61,6 +61,9 @@
                             <small class="form-text text-danger">{!! $errors->first('image') !!}</small>
                         </div>
 
+                  
+
+
                       
                         <input class="btn btn-primary mt-4" type="submit" value="Save Car">
                     </form>
