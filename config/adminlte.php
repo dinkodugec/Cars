@@ -375,6 +375,52 @@ return [
                 ],
             ],
         ],
+        [
+            'text'    => 'User Adminstration',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Users',
+                    'url'  => 'user',
+                ],
+                [
+                    'text' => 'Create Car',
+                    'url'  => 'car/create',
+                ],
+                [
+                    'text' => 'Edit a Car',
+                    'url'  => 'car/{{ $car->id }}/edit',
+                ],
+                [
+                    'text'    => '',
+                    'url'     => 'car',
+                    'submenu' => [
+                        [
+                            'text' => 'level_two',
+                            'url'  => '#',
+                        ],
+                        [
+                            'text'    => 'level_two',
+                            'url'     => '#',
+                            'submenu' => [
+                                [
+                                    'text' => 'level_three',
+                                    'url'  => '#',
+                                ],
+                                [
+                                    'text' => 'level_three',
+                                    'url'  => '#',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'level_one',
+                    'url'  => '#',
+                ],
+            ],
+        ],
         ['header' => 'labels'],
         [
             'text'       => 'important',

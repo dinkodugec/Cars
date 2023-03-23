@@ -55,3 +55,6 @@ Route::get('/car/{car_id}/tag/{tag_id}/detach', [App\Http\Controllers\CarTagCont
 
 // Delete Images of Car
 Route::get('/delete-images/car/{car_id}', [App\Http\Controllers\CarController::class, 'deleteImages']);
+
+// Delete Images of User
+Route::get('/delete-images/user/{user_id}', [App\Http\Controllers\CarController::class, 'deleteImages']);
