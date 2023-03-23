@@ -3,11 +3,6 @@
            <!-- Title -->
            <h1 class="mt-4">{{$user->name}}</h1>
  
-           <!-- Author -->
-           <p class="lead">
-             by
-             <a href="user profile">{{ $user->name}}</a>
-           </p>
    
            <hr>
    
@@ -17,7 +12,9 @@
            <hr>
    
            <!-- Preview Image -->
-           <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+           @if(file_exists('img/users/' . $user->id ."_thumb.jpg"))
+           <img src="/img/users/{{$user->id}}_large.jpg" class="card-img" alt="...">
+           @endif
    
            <hr>
 

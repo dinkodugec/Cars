@@ -52,7 +52,7 @@
                         </div>
                         <div class="form-group">
                             <label for="about_me">About Me</label>
-                            <input type="text" class="form-control{{ $errors->has('about_me') ? ' border-danger' : '' }}" id="about_me" value=" {{ $user->about_me ?? old('about_me') }}" name="about_me">
+                            <textarea class="form-control{{ $errors->has('about_me') ? ' border-danger' : '' }}" id="about_me" value=" {{ $user->about_me ?? old('about_me ') }}" name="about_me " cols="20" rows="10"></textarea>
                             <small class="form-text text-danger">{!! $errors->first('about_me') !!}</small>
                         </div>
                         <div class="form-group">
@@ -76,7 +76,7 @@
                       
                         <input class="btn btn-primary mt-4" type="submit" value="Edit User">
                     </form>
-                    <a class="btn btn-primary float-right" href="/car"><i class="fas fa-arrow-circle-up"></i> Back</a>
+                    <a class="btn btn-primary float-right" href="/user"><i class="fas fa-arrow-circle-up"></i> Back</a>
                 </div>
             </div>
         </div>
