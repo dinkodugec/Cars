@@ -174,23 +174,30 @@ class CarController extends Controller
     public function saveimages($imageInput, $car_id)
     {
         $image = Image::make($imageInput); //new instance store n variable
-        if ( $image->width() > $image->height() ) { // Landscape
-            $image->widen(1200) /* 1200px */
-                ->save(public_path() . "/img/cars/" . $car_id . "_large.jpg") //always converted in jpg
-                ->widen(400)->pixelate(12)
-                ->save(public_path() . "/img/cars/" . $car_id . "_pixelated.jpg");
+
+             // Landscape
+            $image->resize(1200, 400, function ($constraint) {
+                $constraint->aspectRatio();})
+                 ->save(public_path() . "/img/cars/" . $car_id . "_large.jpg") //always converted in jpg
+                 
+                 ->resize(300, 400, function ($constraint) {
+                    $constraint->aspectRatio();})
+                 ->save(public_path() . "/img/cars/" . $car_id . "_thumb.jpg");
+              /*    ->widen(300)
+                 ->heighten(400)
+                 ->save(public_path() . "/img/cars/" . $car_id . "_thumb.jpg"); */
             $image = Image::make($imageInput);
-            $image->widen(60)
-                ->save(public_path() . "/img/cars/" . $car_id . "_thumb.jpg");
-        } else { // Portrait
-            $image->heighten(900)
+         
+            // Portrait;
+/*             $image->widen(1200)
                 ->save(public_path() . "/img/cars/" . $car_id . "_large.jpg")
                 ->heighten(400)->pixelate(12)
                 ->save(public_path() . "/img/cars/" . $car_id . "_pixelated.jpg");
             $image = Image::make($imageInput);
-            $image->heighten(60)
-                ->save(public_path() . "/img/cars/" . $car_id . "_thumb.jpg");
-        }
+            $image->heighten(200)
+                   ->widen(300)
+                  ->save(public_path() . "/img/cars/" . $car_id . "_thumb.jpg"); */
+        
 
 
     }
