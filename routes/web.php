@@ -36,7 +36,7 @@ require __DIR__.'/auth.php';
 
 Auth::routes();
 
-Route::resource('car', CarController::class);
+Route::resource('car', CarController::class)/* ->middleware('auth') */;
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
