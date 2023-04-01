@@ -41,13 +41,13 @@ Route::resource('car', CarController::class)/* ->middleware('auth') */;
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index'); 
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index')->middleware('admin'); 
 
 Route::get('/car/tag/{tag_id}', [App\Http\Controllers\CarTagController::class, 'getFilteredCars'])->name('car_tag'); 
 
 Route::view('/about', 'about')->name('about');
 
-Route::resource('user', UserController::class);
+Route::resource('user', UserController::class)->middleware('admin');
 
 // Attach / Detach Tags to Car
 Route::get('/car/{car_id}/tag/{tag_id}/attach', [App\Http\Controllers\CarTagController::class, 'attachTag']);
