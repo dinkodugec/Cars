@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Car;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\Facades\Image;
 
@@ -14,8 +15,8 @@ class CarController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->except(['index']);
-        $this->middleware('admin')->except(['index']);
+        $this->middleware('auth')->except(['index', 'destroy']);
+        $this->middleware('admin')->except(['index', 'show', 'destroy']);
 
     }    
     /**
@@ -170,6 +171,9 @@ class CarController extends Controller
      */
     public function destroy(Car $car)
     {
+
+        abort_unless(Gate::allows('delete', $car), 403);
+
         $oldName = $car->name;
         $car->delete();
         return $this->index()->with(
