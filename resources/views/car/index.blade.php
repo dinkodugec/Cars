@@ -40,6 +40,14 @@
                     @endforeach          
                 </div>
                 <span class="float-right ml-2">{{ $car->created_at->diffForHumans() }}</span>
+                @can('delete', $car)
+                   <form class="float-right" style="display: inline" action="/car/{{ $car->id }}" method="post">
+                      @csrf
+                      @method('DELETE')
+                      <input class="btn btn-outline-danger btn-sm ml-2" type="submit" value="Delete">
+                 </form>
+                @endcan
+               
            </div>
          <br>
         </div>

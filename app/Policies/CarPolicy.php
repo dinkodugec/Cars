@@ -72,7 +72,7 @@ class CarPolicy
      */
     public function delete(User $user, Car $car)
     {
-        // return $user->id === $car->user_id;  it return true or false, if true it can update
+          return $user->id === $car->user_id;  
     }
 
     /**

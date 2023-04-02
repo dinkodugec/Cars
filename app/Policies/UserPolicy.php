@@ -52,7 +52,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        //
+        // $user->id = $model->id; so, if user can update his own profile
     }
 
     /**
