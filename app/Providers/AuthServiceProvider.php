@@ -25,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('connect_carTag', function($user, $car){
+          return $user->id === $car->user_id || auth()->user()->role == 'admin';
+        });
     }
 }
