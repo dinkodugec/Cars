@@ -21,11 +21,13 @@
                         {{ __('About') }}
                     </x-nav-link>
                 </div>
+                @auth
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
-                        {{ __('Would You like Create Your first Car') }}
+                    <x-nav-link :href="route('mydashboard')" :active="request()->routeIs('mydashboard')">
+                        {{ __('My Dashboard') }}
                     </x-nav-link>
                 </div>
+                @endauth
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
                         {{ __('All Cars') }}

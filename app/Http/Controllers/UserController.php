@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -69,6 +70,9 @@ class UserController extends Controller
         return view('user.show')->with([
             'user' => $user
         ]);
+
+       /*  or can this way also
+        return view('user.show', ['user'=> $user]); */
       
     }
 
@@ -180,4 +184,24 @@ class UserController extends Controller
             ]
         );
     }
+
+    public function myDashboard(User $user)
+    {
+        $cars = Car::select()
+        ->where('user_id', auth()->id())
+        ->orderBy('updated_at', "DESC")
+        ->get();
+
+        return view('mydashboard')->with([
+            'user' => $user,
+            'cars' => $cars
+        ]);
+
+    
+
+     
+
+    }
+
+
 }

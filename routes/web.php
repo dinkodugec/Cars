@@ -45,7 +45,9 @@ Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->na
 
 Route::get('/car/tag/{tag_id}', [App\Http\Controllers\CarTagController::class, 'getFilteredCars'])->name('car_tag'); 
 
-Route::view('/about', 'about')->name('about');
+Route::get('/mydashboard', [App\Http\Controllers\UserController::class, 'myDashboard'])->name('mydashboard');
+
+ Route::view('/about', 'about')->name('about'); 
 
 Route::resource('user', UserController::class);
 
