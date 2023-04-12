@@ -61,7 +61,7 @@
                             <x-dropdown align="right" width="48">
                                 <x-slot name="trigger">
                                     <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                                        <div>{{ Auth::user()->name }}</div>
+                                        <div> Hi {{ Auth::user()->name }}</div>
             
                                         <div class="ml-1">
                                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -83,6 +83,7 @@
                                         </x-dropdown-link>
                                     </form>
                                 </x-slot>
+                             
                             </x-dropdown>
                         </div>
             
@@ -143,22 +144,52 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-md-9">
-                                                    <h2>Hello {{ auth()->user()->name }}</h2>
-                                                    <h5>Your Motto</h5>
-                                                    <p><p>{{ auth()->user()->motto ?? '' }}</p></p>
-                                                    <h5>Your "About Me" -Text</h5>
-                                                    <p><p>{{ auth()->user()->about_me ?? '' }}</p></p>
+                                                    @foreach($user as $user)
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                           Hello  {{ auth()->user()->name }}
+                                                        </div>
+                                                       
+                                                      </div>
+                                                      <div class="card">
+                                                        <div class="card-header">
+                                                            Your Motto
+                                                        </div>
+                                                        <div class="card-body">
+                                                          <blockquote class="blockquote mb-0">
+                                                            <p><p>{{ auth()->user()->motto ?? '' }}</p></p>
+                                                            <footer class="blockquote-footer mt-2">Someone famous in <cite title="Source Title">Goodfather</cite></footer>
+                                                          </blockquote>
+                                                        </div>
+                                                      </div>
+                                                      <div class="card">
+                                                        <div class="card-header">
+                                                            Abbout Me
+                                                        </div>
+                                                        <div class="card-body">
+                                                          <blockquote class="blockquote mb-0">
+                                                            <p><p>{{ $user->about_me }}</p></p>
+                                                         
+                                                          </blockquote>
+                                                        </div>
+                                                      </div>
+                                                 
+                                                    @endforeach
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <img class="img-thumbnail" src="/img/300x400.jpg" alt="{{ auth()->user()->name }}">
+                                                    <img src="/img/users/{{$user->id}}_large.jpg" class="card-img" alt="{{ auth()->user()->name }}">
                                                 </div>
+                                             
+                                                 @auth
+                                                   <a class="btn btn-sm btn-light ml-2" href="/user/{{ $user->id }}/edit"><i class="fas fa-edit"></i> Edit profile</a>
+                                                 @endauth
                                             </div>
                         
                         
                         
                                             @isset($cars)
                                             @if($cars->count() > 0)
-                                                <h3>Your cars:</h3>
+                                                <h2 class="mt-4 mb-4">This is my cars</h3>
                                                 @endif
                                             <ul class="list-group">
                                              
@@ -166,7 +197,7 @@
                                                     <li class="list-group-item">
                                                         <h5 class="card-title">{{ $car->name }}</h5> 
                                                         <a title="Show Details" href="/car/{{ $car->id }}">
-                                                            <img src="/img/thumb_landscape.jpg" alt="thumb"></a>
+                                                            <img src="/img/cars/{{$car->id}}_thumb.jpg" alt="thumb"></a>
                                                             {{ $car->name }}
                                                         </a>
                                                         @auth
@@ -191,7 +222,7 @@
                                             </ul>
                                             @endisset
                         
-                                            <a class="btn btn-success btn-sm" href="/car/create"><i class="fas fa-plus-circle"></i> Create new Car</a>
+                                            <a class="btn btn-secondary btn-sm mt-4" href="/car/create"><i class="fas fa-plus-circle"></i> Create new Car</a>
                                         </div>
                                     </div>
                                 </div>

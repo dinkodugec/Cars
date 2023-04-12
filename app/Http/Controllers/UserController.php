@@ -192,12 +192,18 @@ class UserController extends Controller
         );
     }
 
-    public function myDashboard(User $user)
+    public function myDashboard()
     {
         $cars = Car::select()
         ->where('user_id', auth()->id())
         ->orderBy('updated_at', "DESC")
         ->get();
+
+        $user = User::select()
+         ->where('id', auth()->id())
+         ->get();
+
+         /* dd($user); */
 
         return view('mydashboard')->with([
             'user' => $user,
