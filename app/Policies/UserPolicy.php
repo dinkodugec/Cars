@@ -9,6 +9,15 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
+    
+    public function before($user, $ability) //this override all abilities down here, admin users can do everyting
+     {
+         if ($user->role === 'admin') {
+            return true;
+        } 
+    }
+
+
     /**
      * Determine whether the user can view any models.
      *
@@ -52,7 +61,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-       return  $user->id == $model->id; /* so, if user can update his own profile */
+       return  $user->id === $model->id; /* so, if user can update his own profile */
     }
 
     /**
@@ -64,7 +73,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        //
+        return  $user->id === $model->id;
     }
 
     /**
