@@ -52,7 +52,8 @@
                 </div>
             </div>
             @endif
-                <div class="card-header">Edit User</div>
+            <div class="container ">
+                <div class="card-header">Edit User
                 <div class="card-body">
                     <form class="" autocomplete="off" action="/user/{{$user->id}}" method="post" enctype="multipart/form-data">
                         @csrf
@@ -70,7 +71,7 @@
                         </div>
                         <div class="form-group">
                             <label for="about_me">About Me</label>
-                            <textarea class="form-control{{ $errors->has('about_me') ? ' border-danger' : '' }}" id="about_me" value=" {{ $user->about_me ?? old('about_me ') }}" name="about_me " cols="20" rows="10"></textarea>
+                            <textarea class="form-control{{ $errors->has('about_me') ? ' border-danger' : '' }}" id="about_me" value=" {{ $user->about_me ?? old('about_me ') }}" name="about_me " cols="10" rows="10"></textarea>
                             <small class="form-text text-danger">{!! $errors->first('about_me') !!}</small>
                         </div>
                         <div class="form-group">
@@ -80,7 +81,7 @@
                         </div>
 
                         @if(file_exists('img/users/' . $user->id . '_large.jpg'))
-                        <div class="mb-2">
+                        <div class="mb-2 mt-5">
                             <img style="max-width: 400px; max-height: 300px;" src="/img/users/{{$user->id}}_large.jpg" alt="">
                             <a class="btn btn-outline-danger float-right" href="/delete-images/user/{{$user->id}}">Delete Image</a>
                         </div>
@@ -92,11 +93,14 @@
                         </div>
 
                       
-                        <input class="btn btn-primary mt-4" type="submit" value="Edit User">
+                        <input class="btn btn-outline-primary mt-4" type="submit" value="Edit User">
+                        <a class="btn btn-primary float-right" href="/mydashboard"> Back to my dashboard</a>
                     </form>
-                    <a class="btn btn-primary float-right" href="/user"><i class="fas fa-arrow-circle-up"></i> Back</a>
+                
                 </div>
             </div>
+            </div>
+        </div>
         </div>
     </div>
 </div>
