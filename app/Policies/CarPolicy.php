@@ -12,9 +12,9 @@ class CarPolicy
 
     public function before($user, $ability) //this override all abilities down here, admin users can do everyting
      {
-        if ($user->role === 'admin') {
+         if ($user->role === 'admin') {
             return true;
-        }
+        } 
     }
 
     /**
@@ -60,7 +60,7 @@ class CarPolicy
      */
     public function update(User $user, Car $car)
     {
-        // return $user->id === $car->user_id;  it return true or false, if true it can update
+         return $user->id === $car->user_id;  /* it return true or false, if true it can update */
     }
 
     /**

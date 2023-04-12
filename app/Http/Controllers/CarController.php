@@ -15,8 +15,8 @@ class CarController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'destroy']);
-        $this->middleware('admin')->except(['index', 'show', 'destroy']);
+        $this->middleware('auth')->except(['index', 'destroy', 'edit']);
+      /*   $this->middleware('admin')->except(['index', 'show', 'create' , 'destroy', 'store' .'edit']); */
 
     }    
     /**
@@ -119,6 +119,8 @@ class CarController extends Controller
      */
     public function edit(Car $car)
     {
+        abort_unless(Gate::allows('update', $car), 403);
+        
         return view('admin.edit')->with([
             'car' => $car,
             'message_success' => Session::get('message_success'),
@@ -135,6 +137,9 @@ class CarController extends Controller
      */
     public function update(Request $request, Car $car)
     {
+
+        abort_unless(Gate::allows('update', $car), 403);
+
         $request->validate([
             'name' => 'required|min:2',
             'description' => 'required|min:5',
